@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Jci.RetailSurveyTool.TechnicianApp.Views.NewAudit.StoreAreaDetailsShellTabPage"
+    Title="Home"
+    CurrentItem="{x:Reference InventoryListPage}"
+    xmlns:local="clr-namespace:Jci.RetailSurveyTool.TechnicianApp.Views">
+
+
+     <TabBar >
+        <ShellContent x:Name="InventoryListPage" Title="Inventory"
+                     ContentTemplate="{DataTemplate local:Temp1}" />
+        <ShellContent x:Name="IssueListPage" Title="Issue"
+                     ContentTemplate="{DataTemplate local:Temp2}" />
+    </TabBar>
+
+</Shell>

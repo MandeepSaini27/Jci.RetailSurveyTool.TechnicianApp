@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Jci.RetailSurveyTool.TechnicianApp.Views.LookupPreviousPage"
+             xmlns:utility="clr-namespace:Jci.RetailSurveyTool.TechnicianApp.Utility"
+             xmlns:local="clr-namespace:Jci.RetailSurveyTool.TechnicianApp.Controls"
+             utility:ViewModelLocator.AutoWireViewModel="True"
+             Title="Audits"
+             Style="{StaticResource BaseContentPage}"
+             >
+
+    <!--     
+    xmlns:vm="clr-namespace:Jci.RetailSurveyTool.TechnicianApp.ViewModels"
+    <ContentPage.BindingContext>
+        <viewmodels:LookupPreviousViewModel/>
+    </ContentPage.BindingContext>
+-->
+
+    <ContentPage.Content>
+        <StackLayout Style="{StaticResource PagePadding}">
+            <Label Style="{StaticResource LabelMedium}" Text="Customer"/>
+            <Frame Style="{StaticResource FrameStyle}">
+                <local:BorderlessPicker Style="{StaticResource PickerStyle}"
+                    TextColor="{AppThemeBinding Dark={StaticResource TextColor},
+                    Light={StaticResource TextColor}}" SelectedItem="{Binding SelectedCustomer}" 
+                    ItemsSource="{Binding Customers}" ItemDisplayBinding="{Binding Name}"
+                    Image="picker_down_arrow.png"/>
+            </Frame>
+            <Label Style="{StaticResource LabelMedium}" Text="Store Number"/>
+            <Frame Style="{StaticResource FrameStyle}" >
+                <local:BorderlessEntry Style="{StaticResource EntryStyle}"
+                 TextColor="{AppThemeBinding Dark={StaticResource TextColor},Light={StaticResource TextColor}}" Text="{Binding SearchString}"/>
+            </Frame>
+            <Button Style="{StaticResource CustomButtonStyle}" 
+                    BackgroundColor="{StaticResource Primary}"  
+                    Command="{Binding DoSearchCommand}" 
+                    HorizontalOptions="FillAndExpand"
+                    Text="Search" Margin="0,15,0,0"/>
+
+            <RefreshView IsRefreshing="{Binding IsRefreshing}">
+
+                <CollectionView
+                      SelectionMode="Single" 
+                      ItemsSource="{Binding Audits}" 
+                      EmptyView="No items to display"
+                      Style="{StaticResource AppListView}"
+                      SelectedItem="{Binding SelectedAudit, Mode=TwoWay}"
+                      Margin="5,10,5,0">
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Padding="5">
+                                <Frame Style="{StaticResource AppCard}" 
+                                       CornerRadius="7"
+                                       BorderColor="{StaticResource Primary}">
+                                    <StackLayout>
+                                        <StackLayout  Orientation="Horizontal">
+                                            <Label  Text="WO#                " FontAttributes="Bold"/>
+                                            <Label  Text="{Binding ServiceCallNumber}" />
+                                        </StackLayout>
+                                        <StackLayout  Orientation="Horizontal">
+                                            <Label  Text="Store               " FontAttributes="Bold"/>
+                                            <Label  Text="{Binding StoreNumber}"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label  Text="Completed     " FontAttributes="Bold"/>
+                                            <Label  Text="{Binding Completed}"/>
+                                        </StackLayout>
+
+                                    </StackLayout>
+                                </Frame>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </RefreshView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
