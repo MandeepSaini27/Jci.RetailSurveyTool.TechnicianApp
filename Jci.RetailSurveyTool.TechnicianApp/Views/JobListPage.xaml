@@ -9,7 +9,7 @@
              Title="My Scheduled Jobs"
              Style="{StaticResource BaseContentPage}"
              >
-   
+
     <ContentPage.Content>
         <StackLayout>
             <RefreshView IsRefreshing="{Binding IsBusy}"
@@ -22,7 +22,7 @@
                       Style="{StaticResource AppListView}"
                       SelectedItem="{Binding WoSelectedItem, Mode=TwoWay}"
                       Margin="5,10,5,0">
-                    
+
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <StackLayout Padding="5">

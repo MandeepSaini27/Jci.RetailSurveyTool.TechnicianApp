@@ -6,8 +6,8 @@ BindingContext="{StaticResource AuditViewModel}
     "    
     -->
 <ContentPage
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:fontAwesome="clr-namespace:FontAwesome"
     x:Class="Jci.RetailSurveyTool.TechnicianApp.Views.NewAudit.AuditStoreAreaList" 
     xmlns:c="clr-namespace:Jci.RetailSurveyTool.TechnicianApp.Converters"
@@ -18,94 +18,69 @@ BindingContext="{StaticResource AuditViewModel}
     Style="{StaticResource BaseContentPage}"
     
     >
-
+    
     <ContentPage.Resources>
         <ResourceDictionary>
             <c:ByteToImageFieldConverter x:Key="btifc"/>
+            <c:StoreListBackgroundConverter x:Key="ColorConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
+    
+
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Refresh" Command="{Binding LoadCommand}"></ToolbarItem>
-        <ToolbarItem  Text="Save Audit" Command="{Binding FinishAuditCommand}">
-            <!--
-            <ToolbarItem.IconImageSource>
-                <FontImageSource 
-                    FontFamily="FAS"
-                     Glyph="{x:Static fontAwesome:FontAwesomeIcons.Check}"
-                    Size="Large"
-                    />
-            </ToolbarItem.IconImageSource>
-            -->
-        </ToolbarItem>
+        <ToolbarItem Text="Audit Complete" Command="{Binding FinishAuditCommand}"></ToolbarItem>
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-
-        <StackLayout>
-            <Button Text="Navigation test" Clicked="Button_Clicked"></Button>
-            <RefreshView IsRefreshing="{Binding IsBusy}"
+        <RefreshView IsRefreshing="{Binding IsBusy}"
                      RefreshColor="Red"
                      Command="{Binding LoadCommand}">
-                <ListView 
-                ItemTapped="ListView_ItemTapped"
+            <ListView 
             ItemsSource="{Binding StoreAreas}" 
             SelectedItem="{Binding SelectedStoreArea}" 
             HasUnevenRows="True"
-            Style="{StaticResource AppListView}"
-            >
-                    <!--<ListView.Behaviors>
+            Style="{StaticResource AppListView}">
+                <ListView.Behaviors>
                     <behaviors:EventToCommandBehavior 
                     EventName="ItemTapped" 
                     Command="{Binding SelectedCommand}" 
                     EventArgsConverter="{StaticResource LocalItemTappedConverter}" >
                     </behaviors:EventToCommandBehavior>
-                </ListView.Behaviors>-->
+                </ListView.Behaviors>
 
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <Grid Padding="10,10,10,5">
-                                    <Frame  Style="{StaticResource FrameStyle}" CornerRadius="10"
-                                        Padding="10"
-                                        HasShadow="False">
-                                        <!--<StackLayout Orientation="Horizontal">
-                                        <Image Source="{Binding Icon.IconImage, Converter={StaticResource Key=btifc}}" WidthRequest="66" />
-                                        <StackLayout VerticalOptions="Center">
-                                            <Label
-                                        Style="{StaticResource LabelMedium}"
-                                        Text="{Binding Name}"
-                                        VerticalOptions="Center" />
-                                        </StackLayout>
-                                        <Label Style="{StaticResource LabelMicro}" Text="{Binding InventoryStatus}"/>
-                                        <Label Style="{StaticResource LabelMicro}" Text="{Binding IssueStatus}"/>
-                                        <Label/>
-                                    </StackLayout>-->
-                                        <StackLayout>
-                                            <StackLayout Orientation="Horizontal">
-                                                <Image Source="{Binding Icon.IconImage, 
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="10,10,10,5">
+                                <Frame BorderColor="{StaticResource Primary}" 
+                                       BackgroundColor="{Binding IssueInventoryLogged,Converter={StaticResource Key=ColorConverter}}"  Style="{StaticResource AppCard}" CornerRadius="10"
+                                        Padding="10" HasShadow="True">
+                                    
+                                    <StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                        <Image Source="{Binding Icon.IconImage, 
                                             Converter={StaticResource Key=btifc}}" 
                                             WidthRequest="18" HorizontalOptions="Start"
                                             Opacity="0.4"   />
-                                                <Label
+                                        <Label
                                         Style="{StaticResource LabelMedium}"
                                         Text="{Binding Name}"
                                         VerticalOptions="Center"
                                         HorizontalOptions="Start"/>
-                                            </StackLayout>
-                                            <BoxView HeightRequest="1" BackgroundColor="{StaticResource SystemGray2}"></BoxView>
-                                            <Label Style="{StaticResource LabelSmall}" Text="{Binding InventoryStatus}"/>
-                                            <Label Style="{StaticResource LabelSmall}" Text="{Binding IssueStatus}"/>
-                                        </StackLayout>
+                                    </StackLayout>
+                                        <BoxView HeightRequest="1" ></BoxView>
+                                        <Label Style="{StaticResource LabelSmall}" Text="{Binding InventoryStatus}"/>
+                                        <Label Style="{StaticResource LabelSmall}" Text="{Binding IssueStatus}"/>
+                                    </StackLayout>
 
-                                    </Frame>
-                                </Grid>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </RefreshView>
-        </StackLayout>
+                                </Frame>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </RefreshView>
     </ContentPage.Content>
 
 </ContentPage>

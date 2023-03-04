@@ -1,15 +1,16 @@
 ﻿using Jci.RetailSurveyTool.TechnicianApp.Controls;
 
-namespace Jci.RetailSurveyTool.TechnicianApp.Views.ExistingAudit
+
+namespace Jci.RetailSurveyTool.TechnicianApp.Views.NewAudit
 {
     public partial class StoreAreaDetailsPage : Shell
     {
         public StoreAreaDetailsPage()
         {
-            InitializeComponent();/*
+            InitializeComponent();
             Routing.RegisterRoute(nameof(IssueDetailPage), typeof(IssueDetailPage));
             Routing.RegisterRoute(nameof(DeactivationInventoryDetailsPage), typeof(DeactivationInventoryDetailsPage));
-            Routing.RegisterRoute(nameof(PedestalInventoryDetailsPage), typeof(PedestalInventoryDetailsPage));*/
+            Routing.RegisterRoute(nameof(PedestalInventoryDetailsPage), typeof(PedestalInventoryDetailsPage));
         }
     }
 }

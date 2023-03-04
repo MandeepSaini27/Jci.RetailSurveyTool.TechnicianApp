@@ -72,8 +72,8 @@ namespace Jci.RetailSurveyTool.TechnicianApp.ViewModels.ExistingAudit
             Audit = (Audit)parameter;
             StoreType = ((await LocalAppDatabase.GetRawConnection().Table<StoreType>().Where(x => x.ID == Audit.StoreTypeID).FirstOrDefaultAsync()));
 
-            _issuesNumber = Audit.Issues.Count;
-            _inventoriesNumber = Audit.Inventories.Sum(x => x.TotalQty);
+            IssuesNumber = Audit.Issues.Count;
+            InventoriesNumber = Audit.Inventories.Sum(x => x.TotalQty);
 
         }
     }

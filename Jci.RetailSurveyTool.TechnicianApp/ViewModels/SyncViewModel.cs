@@ -70,7 +70,7 @@ namespace Jci.RetailSurveyTool.TechnicianApp.ViewModels
             IsSyncing = true;
             await LocalAppDatabase.SyncEntities(false, x => TablesSyncing = x, x => TablesSynced = x);
             IsSyncing = false;
-            await Shell.Current.GoToAsync("//main");
+            Application.Current.MainPage = new NavigationPage(new AppShell());
         }
     }
 }

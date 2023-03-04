@@ -154,6 +154,6 @@ namespace JCI.RetailSurveyTool.DataBase.Models
         [SQLite.Ignore]
         [NotMapped]
         public override string Description => $"{this.SystemType?.Name} {AlarmTone?.Name}";
-
+        public bool IsOperational { get; set; }
     }
 }

@@ -40,10 +40,12 @@ namespace Jci.RetailSurveyTool.TechnicianApp.ViewModels.NewAudit
                     StoreAreaID = SelectedStoreArea.ID,
                     Audit = StartAudit,
                     StoreArea = SelectedStoreArea,
-                    ID = ((await LocalAppDatabase.GetRawConnection().Table<PedestalInventory>().Where(x=>x.ID<0).OrderBy(x => x.ID).FirstOrDefaultAsync())?.ID ?? 0) - 1,
+                    ID = ((await LocalAppDatabase.GetRawConnection().Table<PedestalInventory>().Where(x => x.ID < 0).OrderBy(x => x.ID).FirstOrDefaultAsync())?.ID ?? 0) - 1,
                     PedestalQty = 0,
                     SystemQty = 0,
-                    BollardsInstalled = false
+                    BollardsInstalled = false,
+                    IsOperational = false
+
                 };
 
             }
@@ -217,16 +219,11 @@ namespace Jci.RetailSurveyTool.TechnicianApp.ViewModels.NewAudit
             {
                 if (SystemTypes != null)
                 {
-                    AlarmTones.Clear();
-                    var lstSystemTypeData = LocalAppDatabase.GetRawConnection().Table<SystemType>().ToListAsync().Result;
-                    if (lstSystemTypeData != null && lstSystemTypeData.Count > 0)
+                    SystemTypes.Clear();
+
+                    foreach (var item in LocalAppDatabase.GetRawConnection().Table<SystemType>().ToListAsync().Result)
                     {
-                        // Fixes done for repeated value in system type dropdown
-                        SystemTypes.Clear();
-                        foreach (var items in lstSystemTypeData)
-                        {
-                            SystemTypes.Add(items);
-                        }
+                        SystemTypes.Add(item);
                     }
                 }
                 else
@@ -256,7 +253,7 @@ namespace Jci.RetailSurveyTool.TechnicianApp.ViewModels.NewAudit
                 await LocalAppDatabase.GetRawConnection().InsertOrReplaceAsync(SelectedInventory);
                 MessagingCenter.Send<PedestalInventoryDetailsViewModel>(this, MessageNames.RefreshInventoryListMessage); //refresh list using DB
                 OnResetForm();
-                App.NavigationService.GoBack();
+                App.Current.MainPage.Navigation.PopAsync();
             }
             catch(Exception ex) 
             { 
@@ -273,7 +270,8 @@ namespace Jci.RetailSurveyTool.TechnicianApp.ViewModels.NewAudit
             await LocalAppDatabase.GetRawConnection().Table<PedestalInventory>().DeleteAsync(x => x.ID == SelectedInventory.ID);
             MessagingCenter.Send<PedestalInventoryDetailsViewModel>(this, MessageNames.RefreshInventoryListMessage); //refresh list using DB
             OnResetForm();
-            App.NavigationService.GoBack();
+            //App.Current.MainPage.Navigation.PopAsync();
+            App.Current.MainPage.Navigation.PopAsync();
         }
 
 

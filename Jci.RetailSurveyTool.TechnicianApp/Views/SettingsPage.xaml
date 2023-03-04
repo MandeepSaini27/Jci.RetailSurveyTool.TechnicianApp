@@ -1,12 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+<ContentPage  xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+ xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:fontAwesome="clr-namespace:FontAwesome"
              x:Class="Jci.RetailSurveyTool.TechnicianApp.Views.SettingsPage"
     Title="Settings"
-    BackgroundColor="{AppThemeBinding 
-                        Dark={StaticResource WindowBackgroundColorDark}, 
-                        Light={StaticResource WindowBackgroundColor}}">
+     Style="{StaticResource BaseContentPage}" >
     <ContentPage.Resources>
         <ResourceDictionary>
 
@@ -99,9 +97,9 @@
             <StackLayout Grid.Column="1">
                 <Label
                     Margin="0,12,0,0"
-                    Style="{DynamicResource LabelMedium}"
+                    Style="{StaticResource BaseLabel}"
                     Text="THEME" />
-                <Frame Style="{DynamicResource CoffeeCard}">
+                <Frame Style="{StaticResource AppCard}">
                     <Grid
                         ColumnDefinitions="*,Auto,Auto,Auto,*"
                         ColumnSpacing="10"

@@ -41,7 +41,7 @@ namespace Jci.RetailSurveyTool.TechnicianApp
             SetUpServices();
             InitializeApp();
             Init();
-            MainPage =  AppShell();
+            MainPage = new NavigationPage(new LoginPage());
         }
         protected override void OnStart()
         {
@@ -76,8 +76,8 @@ namespace Jci.RetailSurveyTool.TechnicianApp
             NavigationService.Configure(ViewNames.CustomerSelectionPage, typeof(CustomerSelectionPage));
             NavigationService.Configure(ViewNames.AuditStoreAreaList, typeof(AuditStoreAreaList));
 
-            //NavigationService.Configure(ViewNames.StoreAreaDetailsPage, typeof(StoreAreaDetailsPage)); 
-            NavigationService.Configure("StoreAreaDetailsShellTabPage", typeof(StoreAreaDetailsShellTabPage));
+            NavigationService.Configure(ViewNames.StoreAreaDetailsPage, typeof(StoreAreaDetailsPage)); 
+           // NavigationService.Configure("StoreAreaDetailsShellTabPage", typeof(StoreAreaDetailsShellTabPage));
             NavigationService.Configure(ViewNames.InventoryListPage, typeof(InventoryListPage));
             NavigationService.Configure(ViewNames.PedestalInventoryDetailsPage, typeof(PedestalInventoryDetailsPage));
             NavigationService.Configure(ViewNames.DeactivationInventoryDetailsPage, typeof(DeactivationInventoryDetailsPage));

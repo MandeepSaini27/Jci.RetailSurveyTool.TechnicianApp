@@ -1,19 +1,9 @@
-﻿using Jci.RetailSurveyTool.TechnicianApp.Attributes;
-using Jci.RetailSurveyTool.TechnicianApp.Services;
+﻿using Jci.RetailSurveyTool.TechnicianApp.Services;
 using Jci.RetailSurveyTool.TechnicianApp.Utility;
 using JCI.RetailSurveyTool.DataBase.Models;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
-
-
 
 namespace Jci.RetailSurveyTool.TechnicianApp.ViewModels.NewAudit
 {
@@ -42,7 +32,8 @@ namespace Jci.RetailSurveyTool.TechnicianApp.ViewModels.NewAudit
                     ID = ((await LocalAppDatabase.GetRawConnection().Table<DeactivationInventory>().Where(x=> x.ID <0).OrderBy(x => x.ID).FirstOrDefaultAsync())?.ID ?? 0) - 1,
                     Qty = 0,
                     NumberOfRegisters = 0,
-                    SlimPadCoversNeeded = 0
+                    SlimPadCoversNeeded = 0,
+                    IsOperational = false
                 };
 
             }
@@ -196,7 +187,7 @@ namespace Jci.RetailSurveyTool.TechnicianApp.ViewModels.NewAudit
             await LocalAppDatabase.GetRawConnection().InsertOrReplaceAsync(SelectedInventory);
             MessagingCenter.Send<DeactivationInventoryDetailsViewModel>(this, MessageNames.RefreshInventoryListMessage); //refresh list using DB
             OnResetForm();
-            App.NavigationService.GoBack();
+            App.Current.MainPage.Navigation.PopAsync();
         }
 
 
@@ -208,7 +199,7 @@ namespace Jci.RetailSurveyTool.TechnicianApp.ViewModels.NewAudit
             await LocalAppDatabase.GetRawConnection().Table<DeactivationInventory>().DeleteAsync(x => x.ID == SelectedInventory.ID);
             MessagingCenter.Send<DeactivationInventoryDetailsViewModel>(this, MessageNames.RefreshInventoryListMessage); //refresh list using DB
             OnResetForm();
-            App.NavigationService.GoBack();
+            App.Current.MainPage.Navigation.PopAsync();
         }
 
     }

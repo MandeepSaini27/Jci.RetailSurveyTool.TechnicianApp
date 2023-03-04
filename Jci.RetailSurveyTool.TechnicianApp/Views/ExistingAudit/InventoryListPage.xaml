@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
-<ContentView
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+<ContentPage
+     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+ xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="Jci.RetailSurveyTool.TechnicianApp.Views.ExistingAudit.InventoryListPage"
-    xmlns:db="clr-namespace:JCI.RetailSurveyTool.DataBase.Models;assembly=JCI.RetailSurveyTool.DataBase"
-    
+    Title="Inventory"
+    IconImageSource="icon_about.png"
     BindingContext="{StaticResource AuditViewModel}"
     >
-    <ContentView.Content>
+    <ContentPage.Content>
         <ListView ItemsSource="{Binding Inventories}">
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -27,5 +27,5 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-    </ContentView.Content>
-</ContentView>
+    </ContentPage.Content>
+</ContentPage>

@@ -14,6 +14,7 @@ using System.Windows.Input;
 
 
 
+
 namespace Jci.RetailSurveyTool.TechnicianApp.ViewModels.NewAudit
 {
     public partial class IssueListViewModel : BaseViewModel

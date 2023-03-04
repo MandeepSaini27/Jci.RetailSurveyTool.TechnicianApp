@@ -15,17 +15,13 @@ namespace Jci.RetailSurveyTool.TechnicianApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
-        
+
         public LoginPage()
         {
-           
+
             InitializeComponent();
-           
-        }
-        protected override void OnAppearing()
-        {
             this.BindingContext = new LoginViewModel(null);
-            base.OnAppearing();
         }
+
     }
 }

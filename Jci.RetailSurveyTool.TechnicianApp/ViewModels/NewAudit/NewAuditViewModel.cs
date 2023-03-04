@@ -272,7 +272,7 @@ namespace Jci.RetailSurveyTool.TechnicianApp.ViewModels.NewAudit
 
 
             MessagingCenter.Send<NewAuditViewModel, Audit>(this, MessageNames.AuditChangedMessage, SelectedAudit);
-            App.NavigationService.GoBack();
+            App.Current.MainPage.Navigation.PopAsync();
         }
 
         //private void OnCustomerChanged(CustomerSelectionViewModel sender, Customer customer)

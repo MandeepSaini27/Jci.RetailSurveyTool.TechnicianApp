@@ -11,7 +11,6 @@ using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Microsoft.Maui.Controls;
 
 
 namespace Jci.RetailSurveyTool.TechnicianApp.ViewModels

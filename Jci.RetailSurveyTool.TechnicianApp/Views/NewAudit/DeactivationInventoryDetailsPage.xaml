@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+<ContentPage  xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+ xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:fontAwesome="clr-namespace:FontAwesome" 
              x:Class="Jci.RetailSurveyTool.TechnicianApp.Views.NewAudit.DeactivationInventoryDetailsPage"        
              xmlns:c="clr-namespace:Jci.RetailSurveyTool.TechnicianApp.Converters"
              xmlns:behaviors="clr-namespace:Jci.RetailSurveyTool.TechnicianApp.Behaviors"
              xmlns:utility="clr-namespace:Jci.RetailSurveyTool.TechnicianApp.Utility" xmlns:local="clr-namespace:Jci.RetailSurveyTool.TechnicianApp.Controls"
              utility:ViewModelLocator.AutoWireViewModel="True"
-             Style="{StaticResource BaseContentPageBug}"
+             Style="{StaticResource BaseContentPage}"
              NavigationPage.BackButtonTitle="Back"
              Title="{Binding SelectedStoreArea.Name}"
              >
@@ -16,12 +16,15 @@
     <ContentPage.Content>
         <StackLayout Style="{StaticResource PagePadding}">
             <Label Text="System Type" Style="{StaticResource LabelMedium}" Margin="0,10,0,0"/>
+            
             <Frame Style="{StaticResource FrameStyle}">
+                
                 <local:BorderlessPicker SelectedItem="{Binding SelectedInventory.DeactivatorType}" 
-                        Style="{StaticResource PickerStyle}"                
+                                        
+                        Style="{StaticResource PickerStyle}"               
                         ItemsSource="{Binding DeactivatorTypes}"
                         ItemDisplayBinding="{Binding Name}"
-                         Image="picker_down_arrow.png"/>
+                                        FontSize="Small" />
             </Frame>
 
             <Label Text="Item Qty" Style="{StaticResource LabelMedium}" Margin="0,10,0,0"/>
@@ -35,9 +38,9 @@
 
                     </Button>
                     <Entry 
-                        Style="{StaticResource DefaultEntryStyle}"
                         HorizontalTextAlignment="Center"
                         Keyboard="Numeric"  HeightRequest="45" WidthRequest="40"
+                         Style="{StaticResource PickerStyle}" 
                         Text="{Binding SelectedInventory.Qty}" />
 
                     <Button Text="+" FontSize="30" Margin="0,0,10,0" Padding="0,0,0,10"
@@ -49,6 +52,8 @@
                     </Button>
                 </StackLayout>
             </Frame>
+            
+            
 
             <Label Text="Number of Registers" Style="{StaticResource LabelMedium}" Margin="0,10,0,0"/>
             <Frame Style="{StaticResource FrameStyle}">
@@ -61,8 +66,8 @@
 
                     </Button>
                     <Entry 
-                           Style="{StaticResource DefaultEntryStyle}"
                             HorizontalTextAlignment="Center"
+                            Style="{StaticResource PickerStyle}" 
                             Keyboard="Numeric"
                             HeightRequest="45" WidthRequest="40"
                             Text="{Binding SelectedInventory.NumberOfRegisters}" />
@@ -76,14 +81,23 @@
                     </Button>
                 </StackLayout>
             </Frame>
-            
+
             <StackLayout IsVisible="{Binding SelectedStoreArea.SelfCheckoutArea}">
                 <Label Text="Self Checkout Vendor" Style="{StaticResource LabelMedium}" Margin="0,10,0,0"/>
-                <Frame Style="{StaticResource FrameStyle}">
-                    <local:BorderlessEntry Keyboard="Text" Text="{Binding SelectedInventory.SelfCheckoutVendor}"
-                     Style="{StaticResource EntryStyle}"/>
+                <Frame Style="{StaticResource FormField}">
+                    <local:BorderlessEntry Keyboard="Text" Text="{Binding SelectedInventory.SelfCheckoutVendor}"/>
                 </Frame>
             </StackLayout>
+
+            <Frame Style="{StaticResource FrameStyle}" Padding="15,15,0,15" Margin="0,20,0,0">
+                <StackLayout Orientation="Horizontal">
+                    <Label Style="{StaticResource LabelMedium}" VerticalTextAlignment="Center" 
+                           HorizontalOptions="StartAndExpand"
+                           Text="Operational?"/>
+                    <!--<Switch OnColor="{StaticResource SystemRed}" ThumbColor="{StaticResource Primary}" IsToggled="{Binding SelectedInventory.BollardsInstalled}"  />-->
+                    <local:CustomSwitchControl IsEnable="{Binding SelectedInventory.IsOperational}"></local:CustomSwitchControl>
+                </StackLayout>
+            </Frame>
 
 
             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="0,50,0,0">

@@ -1,13 +1,15 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <ContentPage 
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+ xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:fontAwesome="clr-namespace:FontAwesome"
     x:Class="Jci.RetailSurveyTool.TechnicianApp.Views.NewAudit.IssueListPage"
     xmlns:c="clr-namespace:Jci.RetailSurveyTool.TechnicianApp.Converters"
     xmlns:behaviors="clr-namespace:Jci.RetailSurveyTool.TechnicianApp.Behaviors"
     xmlns:utility="clr-namespace:Jci.RetailSurveyTool.TechnicianApp.Utility"
     utility:ViewModelLocator.AutoWireViewModel="True"
+    Title="Issues"
+    IconImageSource="icon_feed.png"
     Style="{StaticResource BaseContentPageBug}" >
 
     <ContentPage.Content>
@@ -38,7 +40,7 @@
                                 <ColumnDefinition Width="2*"/>
                                 <ColumnDefinition Width="150"/>
                             </Grid.ColumnDefinitions>
-                            <!--<Grid.RowDefinitions>
+                            <Grid.RowDefinitions>
                                 <RowDefinition>
                                     <RowDefinition.Height>
                                         <OnPlatform x:TypeArguments="GridLength">
@@ -47,7 +49,7 @@
                                         </OnPlatform>
                                     </RowDefinition.Height>
                                 </RowDefinition>
-                            </Grid.RowDefinitions>-->
+                            </Grid.RowDefinitions>
 
                             <Label
                             x:Name="txtName"
@@ -79,7 +81,7 @@
                                         <ColumnDefinition Width="7*"/>
                                         <ColumnDefinition Width="3*"/>
                                     </Grid.ColumnDefinitions>
-                                    <!--<Grid.RowDefinitions>
+                                    <Grid.RowDefinitions>
                                         <RowDefinition>
                                             <RowDefinition.Height>
                                                 <OnPlatform x:TypeArguments="GridLength">
@@ -88,7 +90,7 @@
                                                 </OnPlatform>
                                             </RowDefinition.Height>
                                         </RowDefinition>
-                                    </Grid.RowDefinitions>-->
+                                    </Grid.RowDefinitions>
 
                                     <Label Grid.Column="0" Grid.Row="0"
                                         Style="{StaticResource LabelMedium}" VerticalTextAlignment="Center" MaxLines="2"

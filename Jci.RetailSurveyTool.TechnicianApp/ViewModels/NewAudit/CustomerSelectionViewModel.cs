@@ -80,7 +80,7 @@ namespace Jci.RetailSurveyTool.TechnicianApp.ViewModels.NewAudit
             SelectedCustomer = customer;
             MessagingCenter.Send<CustomerSelectionViewModel, Customer>(this, MessageNames.SelectedCustomerMessage, SelectedCustomer);
             ////Works MessagingCenter.Send(this, MessageNames.SelectedCustomerMessage, SelectedCustomer);
-            App.NavigationService.GoBack();
+            App.Current.MainPage.Navigation.PopAsync();
         }
 
 

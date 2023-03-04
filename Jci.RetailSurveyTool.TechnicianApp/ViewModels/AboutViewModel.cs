@@ -11,7 +11,7 @@ namespace Jci.RetailSurveyTool.TechnicianApp.ViewModels
         public AboutViewModel(INavigationService navigationService) : base(navigationService)
         {
             Title = "About";
-            OpenWebCommand = new Command(async () => await Xamarin.Essentials.Browser.OpenAsync("https://aka.ms/xamarin-quickstart"));
+            OpenWebCommand = new Command(async () => await Microsoft.Maui.ApplicationModel.Browser.OpenAsync("https://aka.ms/xamarin-quickstart"));
         }
 
         public ICommand OpenWebCommand { get; }

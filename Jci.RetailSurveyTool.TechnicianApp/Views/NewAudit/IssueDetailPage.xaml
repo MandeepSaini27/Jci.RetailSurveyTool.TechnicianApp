@@ -4,8 +4,8 @@ IsBusy="{Binding IsBusy}"
        
     -->
 <ContentPage
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+ xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:fontAwesome="clr-namespace:FontAwesome"        
     x:Class="Jci.RetailSurveyTool.TechnicianApp.Views.NewAudit.IssueDetailPage"
     xmlns:c="clr-namespace:Jci.RetailSurveyTool.TechnicianApp.Converters"
@@ -24,12 +24,7 @@ IsBusy="{Binding IsBusy}"
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <ContentPage.ToolbarItems>
-        <!--
-        082022
-        <ToolbarItem Text="Add Photo" Command="{Binding TakePhoto}">
-        
-        -->
+    <!--<ContentPage.ToolbarItems>
         <ToolbarItem Text="Add Photo"  Command="{Binding TakePhotoCommand}">
             <ToolbarItem.IconImageSource>
                 <FontImageSource 
@@ -39,20 +34,20 @@ IsBusy="{Binding IsBusy}"
                     />
             </ToolbarItem.IconImageSource>
         </ToolbarItem>
-        <!--        <ToolbarItem Text="Add" IconImageSource="icon_about.png" Command="{Binding TakePhoto}"/>-->
-    </ContentPage.ToolbarItems>
+    </ContentPage.ToolbarItems>-->
 
     <ContentPage.Content>
 
         <StackLayout Style="{StaticResource PagePadding}">
 
-            <Label Style="{StaticResource LabelMedium}" Text="Issue Type"/>
+            <Label Style="{StaticResource LabelMedium}"  Text="Issue Type"/>
 
             <Frame Style="{StaticResource FrameStyle}">
                 <local:BorderlessPicker SelectedItem="{Binding SelectedIssueType}" 
                         ItemsSource="{Binding IssueTypes}" 
                         ItemDisplayBinding="{Binding Name}"
-                         Style="{StaticResource PickerStyle}"   
+                         Style="{StaticResource PickerStyle}"  
+                         FontSize="Small"
                         Image="picker_down_arrow.png">
                     <Picker.Behaviors>
                         <behaviors:EventToCommandBehavior 
@@ -71,8 +66,10 @@ IsBusy="{Binding IsBusy}"
                 <local:BorderlessPicker SelectedItem="{Binding SelectedIssueCategory}" 
                         ItemsSource="{Binding IssueCategories}" 
                         ItemDisplayBinding="{Binding Name}"
-                           Style="{StaticResource PickerStyle}"   
+                           Style="{StaticResource PickerStyle}"  
+                           FontSize="Small"
                         Image="picker_down_arrow.png">
+                    
                     <Picker.Behaviors>
                         <behaviors:EventToCommandBehavior 
                             EventName="SelectedIndexChanged"
@@ -86,6 +83,7 @@ IsBusy="{Binding IsBusy}"
             <Label Style="{StaticResource LabelMedium}" Text="Issue Details"/>
             <Frame Style="{StaticResource FrameStyle}">
                 <local:BorderlessEntry Text="{Binding SelectedIssue.IssueDescription}"
+                                       FontSize="Small"
                                        Style="{StaticResource EntryStyle}"/>
             </Frame>
 

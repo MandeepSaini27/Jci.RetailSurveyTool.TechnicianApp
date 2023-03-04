@@ -3,17 +3,11 @@
 
 namespace Jci.RetailSurveyTool.TechnicianApp.Views.ExistingAudit
 {
-    public partial class InventoryListPage : ContentView
+    public partial class InventoryListPage : ContentPage
     {
         public InventoryListPage()
         {
-            try
-            {
-                InitializeComponent();
-            }
-            catch (Exception ex)
-            {
-            }
+            InitializeComponent();
         }
     }
 }

@@ -126,5 +126,7 @@ namespace JCI.RetailSurveyTool.DataBase.Models
         [SQLite.Ignore]
         [NotMapped]
         public override string Description => DeactivatorType?.Name ?? "Unknown";
+
+       public bool IsOperational {get; set;}
     }
 }

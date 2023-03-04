@@ -9,9 +9,10 @@ using System.Diagnostics;
 using System.Linq;
 using System.Runtime.ConstrainedExecution;
 using System.Text;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+
+
 
 
 namespace Jci.RetailSurveyTool.TechnicianApp.ViewModels.NewAudit
@@ -178,86 +179,86 @@ namespace Jci.RetailSurveyTool.TechnicianApp.ViewModels.NewAudit
 
                 Debug.WriteLine("Hello! InventoryListViewModel");
 
-                if (SelectedStoreArea.DeactivationArea)
-                {
-                    Debug.WriteLine("Hello! InventoryListViewModel - DeactivationInventory");
 
-                    // requires StartAudit.ID and SelectedStoreArea.ID
-                    var dbInventories = LocalAppDatabase.GetRawConnection().Table<DeactivationInventory>().Where
-                        (x => (x.AuditID == StartAudit.ID && x.StoreAreaID == SelectedStoreArea.ID)).ToListAsync().Result;
+                Debug.WriteLine("Hello! InventoryListViewModel - DeactivationInventory");
 
-                    // creates a new list in memory
-                    var innerjoinresult_as_inventories_list = (from inventory in dbInventories
-                                                               join deactivatorType in dbDeactivatorTypes on inventory.DeactivatorTypeID equals deactivatorType.ID
-                                                               join storeArea in dbStoreArea on inventory.StoreAreaID equals storeArea.ID
+                // requires StartAudit.ID and SelectedStoreArea.ID
+                var dbInventories = LocalAppDatabase.GetRawConnection().Table<DeactivationInventory>().Where
+                    (x => (x.AuditID == StartAudit.ID && x.StoreAreaID == SelectedStoreArea.ID)).ToListAsync().Result;
 
-                                                               select new DeactivationInventory
-                                                               {
-                                                                   ID = inventory.ID,
-                                                                   
-                                                                   AuditID = inventory.AuditID,
-                                                                   Audit = StartAudit,
+                // creates a new list in memory
+                var innerjoinresult_as_inventories_list = (from inventory in dbInventories
+                                                           join deactivatorType in dbDeactivatorTypes on inventory.DeactivatorTypeID equals deactivatorType.ID
+                                                           join storeArea in dbStoreArea on inventory.StoreAreaID equals storeArea.ID
 
-                                                                   StoreAreaID = inventory.StoreAreaID,
-                                                                   StoreArea = storeArea,
+                                                           select new DeactivationInventory
+                                                           {
+                                                               ID = inventory.ID,
 
-                                                                   DeactivatorTypeID = inventory.DeactivatorTypeID,
-                                                                   DeactivatorType = deactivatorType,
+                                                               AuditID = inventory.AuditID,
+                                                               Audit = StartAudit,
 
-                                                                   Qty = inventory.Qty,
+                                                               StoreAreaID = inventory.StoreAreaID,
+                                                               StoreArea = storeArea,
 
-                                                                   SlimPadCoversNeeded = inventory.SlimPadCoversNeeded,
-                                                                   NumberOfRegisters = inventory.NumberOfRegisters,
-                                                                   SelfCheckoutVendor = inventory.SelfCheckoutVendor
-                                                               }
-                                                            ).ToList();
-                    Inventories.Clear();
+                                                               DeactivatorTypeID = inventory.DeactivatorTypeID,
+                                                               DeactivatorType = deactivatorType,
 
-                    innerjoinresult_as_inventories_list.ForEach(x => Inventories.Add(x));
-                }
-                else if (SelectedStoreArea.PedestalArea) {
+                                                               Qty = inventory.Qty,
 
-                    Debug.WriteLine("Hello! InventoryListViewModel - PedestalInventory");
+                                                               SlimPadCoversNeeded = inventory.SlimPadCoversNeeded,
+                                                               NumberOfRegisters = inventory.NumberOfRegisters,
+                                                               SelfCheckoutVendor = inventory.SelfCheckoutVendor,
+                                                               IsOperational = inventory.IsOperational
+                                                           }
+                                                        ).ToList();
+                Inventories.Clear();
 
-                    var dbInventories = LocalAppDatabase.GetRawConnection().Table<PedestalInventory>().Where
-                        (x => (x.AuditID == StartAudit.ID && x.StoreAreaID == SelectedStoreArea.ID)).ToListAsync().Result;
+                innerjoinresult_as_inventories_list.ForEach(x => Inventories.Add(x));
 
-                    //// creates a new list in memory
+                Debug.WriteLine("Hello! InventoryListViewModel - PedestalInventory");
 
-                    var innerjoinresult_as_inventories_list = (from inventory in dbInventories
-                                                               join alarmTone in dbAlarmTones on inventory.AlarmToneID equals alarmTone.ID
-                                                               join systemType in dbSystemTypes on inventory.SystemTypeID equals systemType.ID
-                                                               join storeArea in dbStoreArea on inventory.StoreAreaID equals storeArea.ID
+                var dbInventories2 = LocalAppDatabase.GetRawConnection().Table<PedestalInventory>().Where
+                    (x => (x.AuditID == StartAudit.ID && x.StoreAreaID == SelectedStoreArea.ID)).ToListAsync().Result;
 
-                                                               select new PedestalInventory
-                                                               {
-                                                                   ID = inventory.ID,
+                //// creates a new list in memory
 
-                                                                   AuditID = inventory.AuditID,
-                                                                   Audit = StartAudit,
+                var innerjoinresult_as_inventories_list2 = (from inventory in dbInventories2
+                                                            join alarmTone in dbAlarmTones on inventory.AlarmToneID equals alarmTone.ID
+                                                            join systemType in dbSystemTypes on inventory.SystemTypeID equals systemType.ID
+                                                            join storeArea in dbStoreArea on inventory.StoreAreaID equals storeArea.ID
 
-                                                                   StoreAreaID = inventory.StoreAreaID,
-                                                                   StoreArea = storeArea,
+                                                            select new PedestalInventory
+                                                            {
+                                                                ID = inventory.ID,
 
-                                                                   AlarmToneID = inventory.AlarmToneID,
-                                                                   AlarmTone = alarmTone,
+                                                                AuditID = inventory.AuditID,
+                                                                Audit = StartAudit,
 
-                                                                   SystemTypeID = inventory.SystemTypeID,
-                                                                   SystemType = systemType,
+                                                                StoreAreaID = inventory.StoreAreaID,
+                                                                StoreArea = storeArea,
 
-                                                                   SystemQty = inventory.SystemQty,
-                                                                   PedestalQty = inventory.PedestalQty,
+                                                                AlarmToneID = inventory.AlarmToneID,
+                                                                AlarmTone = alarmTone,
 
-                                                                   BollardsInstalled = inventory.BollardsInstalled
-                                                               }
-                                                            ).ToList();
-                    Inventories.Clear();
+                                                                SystemTypeID = inventory.SystemTypeID,
+                                                                SystemType = systemType,
 
-                    innerjoinresult_as_inventories_list.ForEach(x => Inventories.Add(x));
-                }
+                                                                SystemQty = inventory.SystemQty,
+                                                                PedestalQty = inventory.PedestalQty,
+
+                                                                BollardsInstalled = inventory.BollardsInstalled,
+                                                                IsOperational = inventory.IsOperational
+                                                            }
+                                                        ).ToList();
+                //Inventories.Clear();
+
+                innerjoinresult_as_inventories_list2.ForEach(x => Inventories.Add(x));
+
 
 
                 IsRefreshing = false;
+
             }
             catch (Exception ex)
             {
@@ -298,14 +299,15 @@ namespace Jci.RetailSurveyTool.TechnicianApp.ViewModels.NewAudit
 
         private void OnSelectedCommand(Inventory inventory)
         {
+
           
-            if (SelectedStoreArea.DeactivationArea)
+            if (inventory.GetType() == typeof(DeactivationInventory))
             {
                 MessagingCenter.Send<InventoryListViewModel>(this, MessageNames.SelectedDeactivationInventoryMessage); // reset inventory detail form
                 App.NavigationService.NavigateTo("DeactivationInventoryDetailsPage", inventory);
 
             }
-            else if (SelectedStoreArea.PedestalArea)
+            else if (inventory.GetType() == typeof(PedestalInventory))
             {
                 MessagingCenter.Send<InventoryListViewModel>(this, MessageNames.SelectedPedestalInventoryMessage); // reset inventory detail form
                 App.NavigationService.NavigateTo("PedestalInventoryDetailsPage", inventory);

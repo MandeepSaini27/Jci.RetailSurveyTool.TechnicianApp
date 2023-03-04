@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <!-- xmlns:viewModels="clr-namespace:Jci.RetailSurveyTool.TechnicianApp.ViewModels.NewAudit" 
                  BindingContext="{StaticResource CustomerViewModel}" -->
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+<ContentPage  xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+ xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Jci.RetailSurveyTool.TechnicianApp.Views.NewAudit.CustomerSelectionPage"
              xmlns:behaviors="clr-namespace:Jci.RetailSurveyTool.TechnicianApp.Behaviors"
              xmlns:utility="clr-namespace:Jci.RetailSurveyTool.TechnicianApp.Utility"
@@ -13,7 +13,7 @@
     <ContentPage.Content>
         <StackLayout>
             <ListView x:Name="MyList" ItemsSource="{Binding Customers}" 
-                      BackgroundColor="{AppThemeBinding Dark={StaticResource TextWindowBackgroundColorBug},Light={StaticResource WindowBackgroundColorBug}}"                      RefreshCommand="{Binding LoadCommand}" 
+                      RefreshCommand="{Binding LoadCommand}" 
                       IsPullToRefreshEnabled="True" 
                       IsRefreshing="{Binding IsRefreshing}">
                 <ListView.Behaviors>

@@ -13,7 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Xamarin.Essentials;
+
 
 
 namespace Jci.RetailSurveyTool.TechnicianApp.ViewModels.NewAudit
@@ -368,7 +368,7 @@ namespace Jci.RetailSurveyTool.TechnicianApp.ViewModels.NewAudit
             //WORKS! MessagingCenter.Send<IssueDetailViewModel, Issue>(this, MessageNames.AddIssueMessage, SelectedIssue);
             MessagingCenter.Send<IssueDetailViewModel>(this, MessageNames.RefreshIssueListMessage); //refresh list using DB
             OnResetForm();
-            App.NavigationService.GoBack();
+            App.Current.MainPage.Navigation.PopAsync();
         }
 
 
@@ -385,7 +385,7 @@ namespace Jci.RetailSurveyTool.TechnicianApp.ViewModels.NewAudit
             //RefreshItemAreaPage();
             MessagingCenter.Send<IssueDetailViewModel>(this, MessageNames.RefreshIssueListMessage); //refresh list using DB
             OnResetForm();
-            App.NavigationService.GoBack();
+            App.Current.MainPage.Navigation.PopAsync();
         }
 
         public override bool OnBackButtonPressed()
@@ -427,14 +427,14 @@ namespace Jci.RetailSurveyTool.TechnicianApp.ViewModels.NewAudit
 
         public async void OnTakePhoto()
         {
-            var status = await Xamarin.Essentials.Permissions.RequestAsync<Xamarin.Essentials.Permissions.Camera>();
+            var status = await Permissions.RequestAsync<Permissions.Camera>();
 
-            if (status != Xamarin.Essentials.PermissionStatus.Granted)
+            if (status != PermissionStatus.Granted)
                 return;
 
             try
             {
-                var photo = await Xamarin.Essentials.MediaPicker.CapturePhotoAsync();
+                var photo = await MediaPicker.CapturePhotoAsync();
 
                 Console.WriteLine($"CapturePhotoAsync COMPLETED: {photo.FullPath}");
                 //var minimum = (await LocalAppDatabase.GetRawConnection().Table<IssueImage>().OrderBy(x => x.ID).FirstOrDefaultAsync())?.ID ?? 1;
@@ -457,12 +457,12 @@ namespace Jci.RetailSurveyTool.TechnicianApp.ViewModels.NewAudit
                 SelectedIssueImageList.Add(newPhoto);
 
             }
-            catch (Xamarin.Essentials.FeatureNotSupportedException fnsEx)
+            catch (FeatureNotSupportedException fnsEx)
             {
                 //Feature is not supported on the device
                 Debug.WriteLine($"CapturePhotoAsync THREW Feature is not supported on the device: {fnsEx.Message}");
             }
-            catch (Xamarin.Essentials.PermissionException pEx)
+            catch (PermissionException pEx)
             {
                 //Permissions not granted
                 Debug.WriteLine($"CapturePhotoAsync THREW Permissions not granted: {pEx.Message}");

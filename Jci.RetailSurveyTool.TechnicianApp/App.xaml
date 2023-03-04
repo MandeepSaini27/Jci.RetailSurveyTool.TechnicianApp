@@ -13,8 +13,17 @@
 
         <converter:ItemTappedConverter x:Key="LocalItemTappedConverter"></converter:ItemTappedConverter>
         <!--<converter:ItemTappedConverter x:Key="LocalItemSelectedConverter"></converter:ItemTappedConverter>-->
-        
+
         <ResourceDictionary>
+
+
+            <Color x:Key="DarkModeBackground">#18191A</Color>
+            <Color x:Key="DarkModeBoxColor">#242526</Color>
+            <Color x:Key="DarkModeHeadingColor">#E4E6EB</Color>
+            <Color x:Key="DarkModeInputTextColor">#B1B4B8</Color>
+            <Color x:Key="DarkModeTextColor">#B1B4B8</Color>
+            <Color x:Key="DarkModeDescriptionColorColor">#B1B4B8</Color>
+            <Color x:Key="DarkModeBorderColor">#a8d5e5</Color>
 
             <Color x:Key="PrimaryBug">#000000</Color>
             <Color x:Key="PrimaryBug2">#AEAEB2</Color>
@@ -33,7 +42,7 @@
                         Value="{AppThemeBinding Dark={OnPlatform Android=black, iOS=black, Default=black}, Light={OnPlatform Android=white, iOS=white, Default=white}}" />
             </Style>
 
-                <Color x:Key="Primary">#2196F3</Color>
+            <Color x:Key="Primary">#2196F3</Color>
             <Color x:Key="TextColor">#000000</Color>
             <Color x:Key="TextColorDark">White</Color>
 
@@ -79,7 +88,7 @@
 
             <Style x:Key="AppListView" TargetType="ListView">
                 <Setter Property="HasUnevenRows" Value="True"/>
-                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource DarkModeBackground}, Light={StaticResource WindowBackgroundColor}}"/>
                 <Setter Property="SeparatorVisibility"
                         Value="None"/>
                 <Setter Property="RefreshControlColor"
@@ -95,7 +104,7 @@
 
             <Style x:Key="BaseLabel" TargetType="Label">
                 <Setter Property="TextColor" 
-                        Value="{AppThemeBinding Dark={StaticResource TextColorDark},
+                        Value="{AppThemeBinding Dark={StaticResource DarkModeTextColor},
                     Light={StaticResource TextColor}}" />
             </Style>
 
@@ -107,22 +116,27 @@
 
             <Style x:Key="BaseContentPage" TargetType="ContentPage">
                 <Setter Property="BackgroundColor" 
-                        Value="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColorBug}}" />
+                        Value="{AppThemeBinding Dark={StaticResource DarkModeBackground}, Light={StaticResource WindowBackgroundColorBug}}" />
             </Style>
 
             <Style x:Key="PagePadding" TargetType="StackLayout" >
                 <Setter Property="Padding" Value="12" />
             </Style>
 
-                <Style x:Key="LabelMicro" TargetType="Label" BasedOn="{StaticResource BaseLabelBug}">
+            <Style x:Key="LabelMicro" TargetType="Label" BasedOn="{StaticResource BaseLabelBug}">
                 <Setter Property="FontSize" Value="Micro"/>
             </Style>
             <Style x:Key="LabelSmall" TargetType="Label" BasedOn="{StaticResource BaseLabelBug}">
                 <Setter Property="FontSize" Value="Small"/>
+                <Setter Property="TextColor" 
+                        Value="{AppThemeBinding Dark={StaticResource DarkModeTextColor},
+                    Light={StaticResource TextColor}}" />
             </Style>
 
             <Style x:Key="LabelMedium" TargetType="Label" BasedOn="{StaticResource BaseLabelBug}">
                 <Setter Property="FontSize" Value="Medium"/>
+                <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource DarkModeHeadingColor},
+                    Light={StaticResource TextColor}}" />
             </Style>
 
             <Style x:Key="LabelLarge" TargetType="Label" BasedOn="{StaticResource BaseLabelBug}">
@@ -135,7 +149,7 @@
 
             <Style x:Key="ImageButtonOutline" TargetType="ImageButton">
                 <Setter Property="WidthRequest" Value="60" />
-                <Setter Property="HeightRequest" Value="40" />
+                <Setter Property="HeightRequest" Value="{OnPlatform iOS=30, Android=40}" />
                 <Setter Property="CornerRadius" Value="6" />
                 <Setter Property="BorderWidth" Value="0" />
                 <Setter Property="Padding" Value="8" />
@@ -150,7 +164,7 @@
                 <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource TextColorDark},
                     Light={StaticResource TextColorDark}}" />
                 <Setter Property="WidthRequest" Value="150" />
-                <Setter Property="HeightRequest" Value="40" />
+                <Setter Property="HeightRequest" Value="{OnPlatform iOS=30, Android=40}" />
                 <Setter Property="FontSize" Value="Small" />
                 <Setter Property="CornerRadius" Value="6" />
                 <Setter Property="BorderWidth" Value="0" />
@@ -165,7 +179,7 @@
                         Value="{OnPlatform Android=true, iOS=true, Default=true}"/>
                 <Setter Property="CornerRadius" Value="20"/>
                 <Setter Property="BackgroundColor"
-                        Value="{AppThemeBinding Dark={StaticResource CardBackgroundDarkBug},
+                        Value="{AppThemeBinding Dark={StaticResource DarkModeBoxColor},
                     Light={StaticResource CardBackground}}"/>
             </Style>
 
@@ -195,16 +209,6 @@
                         Value="{AppThemeBinding Dark={StaticResource SystemGray},
                     Light={StaticResource SystemGray}}" />
             </Style>
-            <Style x:Key="DefaultEntryStyle" TargetType="Entry">
-                <Setter Property="BackgroundColor" 
-                        Value="Transparent" />
-                <Setter Property="TextColor" 
-                        Value="{AppThemeBinding Dark={StaticResource SystemGray6},
-                    Light={StaticResource SystemGray}}" />
-                <Setter Property="PlaceholderColor" 
-                        Value="{AppThemeBinding Dark={StaticResource SystemGray6},
-                    Light={StaticResource SystemGray}}" />
-            </Style>
             <Style x:Key="PickerStyle" TargetType="local:BorderlessPicker">
                 <Setter Property="HeightRequest" Value="50"></Setter>
                 <Setter Property="Margin" Value="5,0,5,0"></Setter>
@@ -219,11 +223,12 @@
             <Style x:Key="CustomButtonStyle" TargetType="Button">
                 <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource TextColorDark},
                     Light={StaticResource TextColorDark}}" />
-                <Setter Property="HeightRequest" Value="50" />
+                <Setter Property="HeightRequest" Value="{OnPlatform iOS=50, Android=50}" />
                 <Setter Property="FontSize" Value="Small" />
                 <Setter Property="CornerRadius" Value="6" />
                 <Setter Property="BorderWidth" Value="1" />
-                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource DarkModeBoxColor},
+                    Light={StaticResource Primary}}" />
                 <!--<Setter Property="BorderColor" Value="{AppThemeBinding Dark={StaticResource TextColorDark},
                     Light={StaticResource TextColor}}" />-->
                 <Setter Property="HorizontalOptions" Value="Fill" />
@@ -265,6 +270,6 @@
                 </Setter>
             </Style>
 -->
-        </ResourceDictionary>        
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

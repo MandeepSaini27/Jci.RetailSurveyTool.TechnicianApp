@@ -19,9 +19,10 @@ namespace Jci.RetailSurveyTool.TechnicianApp.ViewModels
 
         public LoginViewModel(INavigationService navigationService) : base(navigationService)
         {
-
+            // LoginCommand = new Command(OnLoginClicked);
+            OnSignInSignOut();
         }
-   
+
         async Task OnSignInSignOut()
         {
             AuthenticationResult authResult = null;
@@ -54,6 +55,7 @@ namespace Jci.RetailSurveyTool.TechnicianApp.ViewModels
                     {
                         var content = await GetHttpContentWithTokenAsync(authResult.AccessToken);
                         JObject user = JObject.Parse(content);
+                        //App.Username = user["mail"].ToString();
                         if (user != null)
                         {
                             UserModel objUserModel = new UserModel();
@@ -77,8 +79,15 @@ namespace Jci.RetailSurveyTool.TechnicianApp.ViewModels
                             App.objUserModel = new UserModel();
                             App.objUserModel = objUserModel;
                         }
-                        Shell.Current.GoToAsync("//login/SyncPage");
+
+                        //Application.Current.MainPage = new SyncPage();
+                        Application.Current.MainPage.Navigation.PushAsync(new SyncPage());
+
                     }
+                }
+                else
+                {
+
                 }
             }
             catch (Exception ex)
@@ -105,6 +114,6 @@ namespace Jci.RetailSurveyTool.TechnicianApp.ViewModels
             }
         }
 
-        
+
     }
 }

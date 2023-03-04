@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+<ContentPage  xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+ xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:fontAwesome="clr-namespace:FontAwesome" 
              x:Class="Jci.RetailSurveyTool.TechnicianApp.Views.NewAudit.PedestalInventoryDetailsPage"
              xmlns:c="clr-namespace:Jci.RetailSurveyTool.TechnicianApp.Converters"
@@ -22,6 +22,7 @@
                          SelectedItem="{Binding SelectedInventory.SystemType}" 
                          ItemsSource="{Binding SystemTypes}" 
                          ItemDisplayBinding="{Binding Name}"
+                        FontSize="Small"
                                          Image="picker_down_arrow.png"
                                          />
             </Frame>
@@ -32,6 +33,7 @@
                          SelectedItem="{Binding SelectedInventory.AlarmTone}" 
                          ItemsSource="{Binding AlarmTones}" 
                          ItemDisplayBinding="{Binding Name}"
+                    FontSize="Small"
                          Image="picker_down_arrow.png"                />
             </Frame>
             <Label Style="{StaticResource LabelMedium}" Text="System Qty"/>
@@ -48,7 +50,7 @@
                     <Entry 
                         HorizontalTextAlignment="Center"
                         Keyboard="Numeric"  HeightRequest="45" WidthRequest="40"
-                        Style="{StaticResource DefaultEntryStyle}"
+                        Style="{StaticResource EntryStyle}"
                         Text="{Binding SelectedInventory.SystemQty}" />
 
                     <Button Text="+" FontSize="30" Margin="0,0,10,0" Padding="0,0,0,10"
@@ -74,7 +76,7 @@
                     <Entry 
                             HorizontalTextAlignment="Center"
                             Keyboard="Numeric"
-                            Style="{StaticResource DefaultEntryStyle}"
+                        Style="{StaticResource EntryStyle}"
                             HeightRequest="45" WidthRequest="40"
                             Text="{Binding SelectedInventory.PedestalQty}" 
                         />
@@ -98,6 +100,18 @@
                     <local:CustomSwitchControl IsEnable="{Binding SelectedInventory.BollardsInstalled}"></local:CustomSwitchControl>
                 </StackLayout>
             </Frame>
+
+            <Frame Style="{StaticResource FrameStyle}" Padding="15,15,0,15" Margin="0,20,0,0">
+                <StackLayout Orientation="Horizontal">
+                    <Label Style="{StaticResource LabelMedium}" VerticalTextAlignment="Center" 
+                           HorizontalOptions="StartAndExpand"
+                           Text="Operational?"/>
+                    <!--<Switch OnColor="{StaticResource SystemRed}" ThumbColor="{StaticResource Primary}" IsToggled="{Binding SelectedInventory.BollardsInstalled}"  />-->
+                    <local:CustomSwitchControl IsEnable="{Binding SelectedInventory.IsOperational}"></local:CustomSwitchControl>
+                </StackLayout>
+            </Frame>
+
+
 
             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="0,40,0,0">
                 <Button Style="{StaticResource CustomButtonStyle}" 

@@ -1,4 +1,5 @@
-﻿using Jci.RetailSurveyTool.TechnicianApp.Data;
+﻿
+using Jci.RetailSurveyTool.TechnicianApp.Data;
 using Jci.RetailSurveyTool.TechnicianApp.Models;
 using Jci.RetailSurveyTool.TechnicianApp.Services;
 using System;
@@ -220,8 +221,6 @@ namespace Jci.RetailSurveyTool.TechnicianApp.ViewModels
             }
         }
 
-
-        //[NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -229,14 +228,7 @@ namespace Jci.RetailSurveyTool.TechnicianApp.ViewModels
 
         public virtual Task InitializeAsync(object data)
         {
-            try
-            {
-                return Task.FromResult(false);
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
+            return Task.FromResult(false);
         }
 
 

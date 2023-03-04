@@ -21,23 +21,12 @@ namespace Jci.RetailSurveyTool.TechnicianApp.ViewModels.NewAudit
             CommandTaskAttribute.InitCommands(this);
         }
 
-       
-
         public void InitializeMessenger()
         {
             //MessagingCenter.Subscribe<NewAuditViewModel, Audit>(this, MessageNames.StartAuditMessage, (newAuditViewModel, audit) => OnStartAudit(audit));
             //MessagingCenter.Subscribe<NewAuditViewModel, Customer>(this, MessageNames.SelectedCustomerMessage, (newAuditViewModel, customer) => OnSelectedCustomer(customer));
-            try
-            {
-                MessagingCenter.Subscribe<AuditStoreAreaListViewModel, StoreArea>(this, MessageNames.SelectedStoreAreaMessage, (auditStoreAreaListViewModel, storeArea) => OnSelectedStoreArea(storeArea));
-
-            }
-            catch(Exception e)
-            {
-
-            }
-                }
-
+            MessagingCenter.Subscribe<AuditStoreAreaListViewModel, StoreArea>(this, MessageNames.SelectedStoreAreaMessage, (auditStoreAreaListViewModel, storeArea) => OnSelectedStoreArea(storeArea));
+        }
 
         private StoreArea _selectedStoreArea;
 
@@ -47,8 +36,8 @@ namespace Jci.RetailSurveyTool.TechnicianApp.ViewModels.NewAudit
             set
             {
                 _selectedStoreArea = value;   
-                //OnPropertyChanged();
-                //OnPropertyChanged(nameof(StoreAreaDetailTitle));
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(StoreAreaDetailTitle));
             }
         }
 
@@ -73,7 +62,11 @@ namespace Jci.RetailSurveyTool.TechnicianApp.ViewModels.NewAudit
 
         private void OnAddInventoryCommand()
         {
-            if (SelectedStoreArea.DeactivationArea)
+            if (SelectedStoreArea.DeactivationArea && SelectedStoreArea.PedestalArea)
+            {
+                App.NavigationService.NavigateTo("SelectInventoryPage");
+            }
+            else if (SelectedStoreArea.DeactivationArea)
             {
                 App.NavigationService.NavigateTo("DeactivationInventoryDetailsPage");
             }

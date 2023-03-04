@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+<ContentPage  xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+ xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Jci.RetailSurveyTool.TechnicianApp.Views.LookupPreviousPage"
              xmlns:utility="clr-namespace:Jci.RetailSurveyTool.TechnicianApp.Utility"
              xmlns:local="clr-namespace:Jci.RetailSurveyTool.TechnicianApp.Controls"
@@ -18,21 +18,29 @@
 
     <ContentPage.Content>
         <StackLayout Style="{StaticResource PagePadding}">
-            <Label Style="{StaticResource LabelMedium}" Text="Customer"/>
+            <Label TextColor="{AppThemeBinding Dark={StaticResource DarkModeHeadingColor},
+                    Light={StaticResource TextColor}}" 
+                   Style="{StaticResource LabelMedium}" Text="Customer"/>
+            
             <Frame Style="{StaticResource FrameStyle}">
                 <local:BorderlessPicker Style="{StaticResource PickerStyle}"
-                    TextColor="{AppThemeBinding Dark={StaticResource TextColor},
-                    Light={StaticResource TextColor}}" SelectedItem="{Binding SelectedCustomer}" 
+                    TextColor="{AppThemeBinding Dark={StaticResource DarkModeInputTextColor}, 
+                    Light={StaticResource TextColor}}" SelectedItem="{Binding SelectedCustomer}"  FontSize="Small"
                     ItemsSource="{Binding Customers}" ItemDisplayBinding="{Binding Name}"
                     Image="picker_down_arrow.png"/>
             </Frame>
-            <Label Style="{StaticResource LabelMedium}" Text="Store Number"/>
+            
+            <Label Style="{StaticResource LabelMedium}" TextColor="{AppThemeBinding Dark={StaticResource DarkModeHeadingColor},
+                    Light={StaticResource TextColor}}"  Text="Store Number"/>
+            
             <Frame Style="{StaticResource FrameStyle}" >
                 <local:BorderlessEntry Style="{StaticResource EntryStyle}"
-                 TextColor="{AppThemeBinding Dark={StaticResource TextColor},Light={StaticResource TextColor}}" Text="{Binding SearchString}"/>
+                 TextColor="{AppThemeBinding Dark={StaticResource DarkModeInputTextColor},Light={StaticResource TextColor}}" 
+                    FontSize="Small"
+                    Text="{Binding SearchString}"/>
             </Frame>
+            
             <Button Style="{StaticResource CustomButtonStyle}" 
-                    BackgroundColor="{StaticResource Primary}"  
                     Command="{Binding DoSearchCommand}" 
                     HorizontalOptions="FillAndExpand"
                     Text="Search" Margin="0,15,0,0"/>
@@ -40,12 +48,17 @@
             <RefreshView IsRefreshing="{Binding IsRefreshing}">
 
                 <CollectionView
+                    
                       SelectionMode="Single" 
                       ItemsSource="{Binding Audits}" 
-                      EmptyView="No items to display"
                       Style="{StaticResource AppListView}"
                       SelectedItem="{Binding SelectedAudit, Mode=TwoWay}"
                       Margin="5,10,5,0">
+
+                    <CollectionView.EmptyView >
+                        <Label Style="{StaticResource BaseLabel}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center">No data to display</Label>
+                    </CollectionView.EmptyView>
+
 
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
@@ -54,17 +67,17 @@
                                        CornerRadius="7"
                                        BorderColor="{StaticResource Primary}">
                                     <StackLayout>
-                                        <StackLayout  Orientation="Horizontal">
-                                            <Label  Text="WO#                " FontAttributes="Bold"/>
-                                            <Label  Text="{Binding ServiceCallNumber}" />
+                                        <StackLayout  Orientation="Horizontal" >
+                                            <Label Style="{StaticResource BaseLabel}" Text="WO#                " FontAttributes="Bold"/>
+                                            <Label Style="{StaticResource BaseLabel}" Text="{Binding ServiceCallNumber}" />
                                         </StackLayout>
                                         <StackLayout  Orientation="Horizontal">
-                                            <Label  Text="Store               " FontAttributes="Bold"/>
-                                            <Label  Text="{Binding StoreNumber}"/>
+                                            <Label Style="{StaticResource BaseLabel}" Text="Store               " FontAttributes="Bold"/>
+                                            <Label Style="{StaticResource BaseLabel}" Text="{Binding StoreNumber}"/>
                                         </StackLayout>
                                         <StackLayout Orientation="Horizontal">
-                                            <Label  Text="Completed     " FontAttributes="Bold"/>
-                                            <Label  Text="{Binding Completed}"/>
+                                            <Label Style="{StaticResource BaseLabel}" Text="Completed     " FontAttributes="Bold"/>
+                                            <Label Style="{StaticResource BaseLabel}" Text="{Binding Completed}"/>
                                         </StackLayout>
 
                                     </StackLayout>

@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
+
+
 namespace Jci.RetailSurveyTool.TechnicianApp.ViewModels.NewAudit
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]

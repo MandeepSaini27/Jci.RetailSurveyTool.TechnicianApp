@@ -2,8 +2,8 @@
 <!-- xmlns:viewModels="clr-namespace:Jci.RetailSurveyTool.TechnicianApp.ViewModels.NewAudit" 
 IsBusy="{Binding IsBusy}"    
     -->
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+<ContentPage  xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+ xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:fontAwesome="clr-namespace:FontAwesome"
              xmlns:behaviors="clr-namespace:Jci.RetailSurveyTool.TechnicianApp.Behaviors"
              x:Class="Jci.RetailSurveyTool.TechnicianApp.Views.NewAudit.NewAuditPage" 
@@ -35,7 +35,7 @@ IsBusy="{Binding IsBusy}"
                                            Placeholder="SO-123VOM (Example)"
                                            Text="{Binding SelectedAudit.ServiceCallNumber}" Style="{StaticResource EntryStyle}"
                                        Grid.Column="0"
-                                       FontSize="Medium" />
+                                       FontSize="Small" />
                     <ImageButton Style="{StaticResource ImageButtonOutline}"
                                  Grid.Column="1"
                                  VerticalOptions="FillAndExpand" Command="{Binding ServiceCallLookUpCommand}">
@@ -67,7 +67,7 @@ IsBusy="{Binding IsBusy}"
                         <ColumnDefinition Width="65" ></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Label Margin="5,0,0,0" Grid.Column="0"
-                       FontSize="Medium" VerticalTextAlignment="Center" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+                       FontSize="Small" VerticalTextAlignment="Center" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
                        Text="{Binding SelectedCustomer.Name, FallbackValue='No Customer Selected...'}"
                        TextColor="{AppThemeBinding Dark={StaticResource SystemGray6},Light={StaticResource SystemGray}}"
                     />
@@ -85,7 +85,7 @@ IsBusy="{Binding IsBusy}"
                         </ImageButton.Source>
                     </ImageButton>
                 </Grid>
-
+               
             </Frame>
 
             <!--                    IsEnabled="{Binding CustomerIsSelected}"
@@ -102,8 +102,9 @@ IsBusy="{Binding IsBusy}"
                     ItemsSource="{Binding StoreTypes}"                                        
                     Title="Select Store Type..."
                     SelectedItem="{Binding SelectedStoreType}" 
+                   
                     
-                    FontSize="Medium" Image="picker_down_arrow.png">
+                    FontSize="Small" Image="picker_down_arrow.png">
                     <Picker.Behaviors>
                         <behaviors:EventToCommandBehavior 
                             EventName="SelectedIndexChanged" 
@@ -120,7 +121,7 @@ IsBusy="{Binding IsBusy}"
                     <local:BorderlessEntry FlexLayout.Grow="1" Style="{StaticResource EntryStyle}"
                             
                            Keyboard="Text" Placeholder="7775" Text="{Binding SelectedAudit.StoreNumber}"
-                           FontSize="Medium"
+                           FontSize="Small"
                            />
                 </FlexLayout>
             </Frame>
@@ -130,7 +131,7 @@ IsBusy="{Binding IsBusy}"
                     <local:BorderlessEntry FlexLayout.Grow="1" Style="{StaticResource EntryStyle}"
                            Keyboard="Text" Placeholder="John Smith" 
                                        
-                                       FontSize="Medium"                            
+                                       FontSize="Small"                            
                            Text="{Binding Audit.StoreContact}"
                            />
                 </FlexLayout>

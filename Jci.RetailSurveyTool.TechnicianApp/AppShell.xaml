@@ -63,14 +63,7 @@
 
  
 
-    <!-- Login Page -->
-    <ShellContent Route="login" ContentTemplate="{DataTemplate local:LoginPage}">
-    </ShellContent>
-
-    <!-- Sync Page -->
-    <ShellContent Route="SyncPage"
-                  ContentTemplate="{DataTemplate local:SyncPage}">
-    </ShellContent>
+   
 
     <!-- Main Menu Pages -->
     <FlyoutItem Title="Job List" Route="main">

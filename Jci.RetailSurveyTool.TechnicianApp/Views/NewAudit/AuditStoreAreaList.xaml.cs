@@ -12,25 +12,5 @@ namespace Jci.RetailSurveyTool.TechnicianApp.Views.NewAudit
         {
             InitializeComponent();
         }
-
-        private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
-        {
-            Device.BeginInvokeOnMainThread(() =>
-            {
-                App.Current.MainPage.Navigation.PushAsync(new StoreAreaDetailsShellTabPage());
-
-                //Shell.Current.GoToAsync("//ShellTabPage");
-            });
-        }
-
-        private void Button_Clicked(object sender, EventArgs e)
-        {
-            Device.BeginInvokeOnMainThread(() =>
-            {
-               // Navigation.PushAsync(new StoreAreaDetailsShellTabPage());
-                App.Current.MainPage.Navigation.PushAsync(new StoreAreaDetailsShellTabPage());
-                //Shell.Current.GoToAsync("//ShellTabPage");
-            });
-        }
     }
 }
