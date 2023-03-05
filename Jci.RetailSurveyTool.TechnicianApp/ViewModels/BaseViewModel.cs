@@ -19,19 +19,8 @@ namespace Jci.RetailSurveyTool.TechnicianApp.ViewModels
         {
         }
 
-
-        
-
-
         public LocalAppDatabase LocalAppDatabase => DependencyService.Resolve<LocalAppDatabase>();
         public RestService RestService => DependencyService.Resolve<RestService>();
-        //public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
-        //public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
-
-
-
-
-
 
         string title = string.Empty;
         public string Title
@@ -44,39 +33,8 @@ namespace Jci.RetailSurveyTool.TechnicianApp.ViewModels
             [CallerMemberName] string propertyName = "",
             Action onChanged = null)
         {
-            //if (EqualityComparer<T>.Default.Equals(backingStore, value))
-            //    return false;
-
-            //backingStore = value;
-            //onChanged?.Invoke();
-            //OnPropertyChanged(propertyName);
             return true;
         }
-        /*protected async Task LoadTable<T>(ObservableCollection<T> collection, Func<IEnumerable<T>> source)
-        {
-            IsBusy = true;
-            
-            try
-            {
-                await Task.Run(() =>
-                {
-                    collection.Clear();
-                    //var items = await LocalAppDatabase.GetAuditTypeAsync();
-                    foreach (T item in source.Invoke())
-                    {
-                        collection.Add(item);
-                    }
-                });
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex);
-            }
-            finally
-            {
-                IsBusy = false;
-            }
-        }*/
         protected async Task LoadTable<T>(ObservableCollection<T> collection, Func<List<T>> source)
         {
             IsBusy = true;
@@ -86,7 +44,6 @@ namespace Jci.RetailSurveyTool.TechnicianApp.ViewModels
                 await Task.Run(() =>
                 {
                     collection.Clear();
-                    //var items = await LocalAppDatabase.GetAuditTypeAsync();
                     foreach (T item in source.Invoke())
                     {
                         collection.Add(item);
@@ -109,7 +66,6 @@ namespace Jci.RetailSurveyTool.TechnicianApp.ViewModels
             try
             {
                 collection.Clear();
-                //var items = await LocalAppDatabase.GetAuditTypeAsync();
                 foreach (T item in await source.Invoke())
                 {
                     collection.Add(item);
@@ -131,7 +87,6 @@ namespace Jci.RetailSurveyTool.TechnicianApp.ViewModels
             try
             {
                 collection.Clear();
-                //var items = await LocalAppDatabase.GetAuditTypeAsync();
                 foreach (T item in await source.Invoke())
                 {
                     collection.Add(item);
@@ -158,53 +113,10 @@ namespace Jci.RetailSurveyTool.TechnicianApp.ViewModels
             OnPropertyChanged(propertyName);
             return true;
         }
-
-        //#region INotifyPropertyChanged
-        //public event PropertyChangedEventHandler PropertyChanged;
-        ////protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
-        ////{
-        ////    var changed = PropertyChanged;
-        ////    if (changed == null)
-        ////        return;
-
-        ////    changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        ////}
-        //#endregion
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        /// <summary>
-        /// MR new changes
-        /// </summary>
-
-
-        //protected readonly IConnectionService _connectionService;
         protected readonly INavigationService _navigationService;
-        //protected readonly IDialogService _dialogService;
-
-
-        public BaseViewModel(
-            //IConnectionService connectionService, 
-            INavigationService navigationService
-            //,IDialogService dialogService
-            )
+        public BaseViewModel(INavigationService navigationService)
         {
-            //_connectionService = connectionService;
             _navigationService = navigationService;
-            //_dialogService = dialogService;
         }
 
         private bool _isBusy;
@@ -231,34 +143,13 @@ namespace Jci.RetailSurveyTool.TechnicianApp.ViewModels
             return Task.FromResult(false);
         }
 
-
-        //protected virtual void OnPropertyChanged(string propertyName = null)
-        //{
-        //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        //}
-
-        //public virtual void Initialize(object parameter)
-        //{
-
-        //}
-
-        /// <summary>
-        /// //false is default value when system call back press
-        /// </summary>
-        /// <returns></returns>
         public virtual bool OnBackButtonPressed()
         {
-            //false is default value when system call back press
             return false;
         }
-
-
-        //protected virtual bool OnBackButtonPressed();
-
-        /// <summary>
-        /// called when page need override soft back button
-        /// </summary>
-        public virtual void OnSoftBackButtonPressed(){}
+        public virtual void OnSoftBackButtonPressed()
+        {
+        }
 
         protected virtual void OnDisappearing() { }
 
