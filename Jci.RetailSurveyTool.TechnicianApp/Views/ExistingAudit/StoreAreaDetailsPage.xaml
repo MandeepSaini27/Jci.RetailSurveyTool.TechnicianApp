@@ -6,6 +6,8 @@
     x:Class="Jci.RetailSurveyTool.TechnicianApp.Views.ExistingAudit.StoreAreaDetailsPage"
     xmlns:ctl="clr-namespace:Jci.RetailSurveyTool.TechnicianApp.Controls"
     BindingContext="{StaticResource AuditViewModel}"
+    Shell.NavBarHasShadow="False"
+    Shell.NavBarIsVisible = "False"
     Title="{Binding StoreAreaDetailTitle}">
 
     <TabBar>

@@ -1,69 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:fontAwesome="clr-namespace:FontAwesome"
        xmlns:local="clr-namespace:Jci.RetailSurveyTool.TechnicianApp.Views"
        Title="Jci.RetailSurveyTool.TechnicianApp"
-       x:Class="Jci.RetailSurveyTool.TechnicianApp.AppShell"
-       FlyoutBackgroundColor="{AppThemeBinding Dark={StaticResource SystemGray6Dark}, 
-       Light={StaticResource WindowBackgroundColor}}">
-
-    <Shell.Resources>
-        <ResourceDictionary>
-            <Style x:Key="BaseStyle" TargetType="Element">
-                <!--  Top Nav -->
-                <Setter Property="Shell.BackgroundColor" Value="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDark}, Light={StaticResource WindowBackgroundColor}}" />
-                <!--  Menu Icon -->
-                <Setter Property="Shell.ForegroundColor" Value="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDarkBug}, Light={StaticResource TextWindowBackgroundColorBug}}" />
-                <!--  Top Nav Text -->
-                <Setter Property="Shell.TitleColor" Value="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDarkBug}, Light={StaticResource TextWindowBackgroundColorBug}}" />
-                <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
-                <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
-                <Setter Property="Shell.TabBarBackgroundColor" Value="{AppThemeBinding Dark={StaticResource WindowBackgroundColorDarkBug}, Light={StaticResource WindowBackgroundColorBug}}" />
-                <Setter Property="Shell.TabBarForegroundColor" Value="White"/>
-                <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF"/>
-                <Setter Property="Shell.TabBarTitleColor" Value="White"/>
-            </Style>
-            <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
-            <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />
-
-            <!--
-            Default Styles for all Flyout Items
-            https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/flyout#flyoutitem-and-menuitem-style-classes
-            -->
-            <Style Class="FlyoutItemLabelStyle" TargetType="Label">
-                <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource TextColorDark},Light={StaticResource TextColor}}"></Setter>
-            </Style>
-            <Style Class="FlyoutItemLayoutStyle" TargetType="Layout" ApplyToDerivedTypes="True">
-                <Setter Property="VisualStateManager.VisualStateGroups">
-                    <VisualStateGroupList>
-                        <VisualStateGroup x:Name="CommonStates">
-                            <VisualState x:Name="Normal">
-                                <VisualState.Setters>
-                                    <!--  Top Nav Text -->
-                                    <Setter Property="BackgroundColor" Value="Transparent" />
-                                    <!--  Top Nav Text -->
-                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" 
-                                            Value="{AppThemeBinding Dark={StaticResource TextColorDarkBug},Light={StaticResource TextColorBug}}" />
-                                </VisualState.Setters>
-                            </VisualState>
-                            <VisualState x:Name="Selected">
-                                <VisualState.Setters>
-                                    <Setter Property="BackgroundColor"
-                                            Value="{AppThemeBinding Dark={StaticResource SystemGray5Dark}, Light={StaticResource PrimaryBug2}}" />
-                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="{AppThemeBinding Dark={StaticResource TextColorBug},Light={StaticResource TextColorBug}}" />
-                                </VisualState.Setters>
-                            </VisualState>
-                        </VisualStateGroup>
-                    </VisualStateGroupList>
-                </Setter>
-            </Style>
-        </ResourceDictionary>
-    </Shell.Resources>
+       x:Class="Jci.RetailSurveyTool.TechnicianApp.AppShell">
 
  
-
-   
 
     <!-- Main Menu Pages -->
     <FlyoutItem Title="Job List" Route="main">

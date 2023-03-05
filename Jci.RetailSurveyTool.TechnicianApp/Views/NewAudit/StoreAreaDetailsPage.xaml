@@ -9,6 +9,8 @@
     xmlns:c="clr-namespace:Jci.RetailSurveyTool.TechnicianApp.Converters"
     xmlns:behaviors="clr-namespace:Jci.RetailSurveyTool.TechnicianApp.Behaviors"
     xmlns:utility="clr-namespace:Jci.RetailSurveyTool.TechnicianApp.Utility"
+    Shell.NavBarHasShadow="False"
+    Shell.NavBarIsVisible = "False"
     utility:ViewModelLocator.AutoWireViewModel="True"
     Title="{Binding StoreAreaDetailTitle}">
     <Shell.ToolbarItems>
@@ -22,12 +24,24 @@
             </ToolbarItem.IconImageSource>
         </ToolbarItem>
     </Shell.ToolbarItems>
-    <TabBar>
-        <ShellContent Title="Inventory"
-                         Icon="cat.png"
-                         ContentTemplate="{DataTemplate l:InventoryListPage}" />
-        <ShellContent Title="Issue"
-                         Icon="dog.png"
-                         ContentTemplate="{DataTemplate l:IssueListPage}" />
+    
+     <TabBar>
+        <Tab Route="Inventory" Title="Inventory">
+            <Tab.Icon>
+                <FontImageSource FontFamily="MaterialDesignRegular"
+                                 Color="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray200}}"
+                                 Glyph="{x:Static fontAwesome:FontAwesomeIcons.Home}"/>
+              </Tab.Icon>
+            <ShellContent ContentTemplate="{DataTemplate l:InventoryListPage}" />
+        </Tab>
+        <Tab Route="Issue" Title="Issue">
+             <Tab.Icon>
+                <FontImageSource FontFamily="MaterialDesignRegular"
+                                 Color="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray200}}"
+                                 Glyph="{x:Static fontAwesome:FontAwesomeIcons.Search}"/>
+              </Tab.Icon>
+             <ShellContent ContentTemplate="{DataTemplate l:IssueListPage}" />
+        </Tab>
+        
     </TabBar>
 </Shell>
