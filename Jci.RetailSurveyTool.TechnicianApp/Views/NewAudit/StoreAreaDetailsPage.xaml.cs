@@ -3,7 +3,7 @@
 
 namespace Jci.RetailSurveyTool.TechnicianApp.Views.NewAudit
 {
-    public partial class StoreAreaDetailsPage : Shell
+    public partial class StoreAreaDetailsPage : TabbedPage
     {
         public StoreAreaDetailsPage()
         {

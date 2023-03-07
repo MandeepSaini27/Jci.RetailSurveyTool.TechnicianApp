@@ -1,5 +1,6 @@
 ﻿using Jci.RetailSurveyTool.TechnicianApp.Data;
 using Jci.RetailSurveyTool.TechnicianApp.Services;
+using Jci.RetailSurveyTool.TechnicianApp.Views.MasterPages;
 using System;
 using System.Threading.Tasks;
 
@@ -70,7 +71,7 @@ namespace Jci.RetailSurveyTool.TechnicianApp.ViewModels
             IsSyncing = true;
             await LocalAppDatabase.SyncEntities(false, x => TablesSyncing = x, x => TablesSynced = x);
             IsSyncing = false;
-            Application.Current.MainPage = new NavigationPage(new AppShell());
+            Application.Current.MainPage = new NavigationPage(new MainFlyoutPage());
         }
     }
 }

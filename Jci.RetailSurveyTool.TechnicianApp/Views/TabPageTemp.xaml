@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Jci.RetailSurveyTool.TechnicianApp.Views.TabPageTemp"
+             Title="TabPageTemp">
+    <ContentPage Title="Tab 2">  
+        <StackLayout>  
+          <Label Text="Green"  HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" Margin="5" />  
+          <BoxView Color="Green" VerticalOptions="FillAndExpand" />  
+        </StackLayout>  
+      </ContentPage>  
+      <ContentPage Title="Tab 3">  
+        <StackLayout>  
+          <Label Text="Blue" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" Margin="5"  />  
+          <BoxView Color="Blue" VerticalOptions="FillAndExpand" />  
+        </StackLayout>  
+      </ContentPage>  
+</TabbedPage>

@@ -41,7 +41,7 @@ namespace Jci.RetailSurveyTool.TechnicianApp
             SetUpServices();
             InitializeApp();
             Init();
-            MainPage = new NavigationPage(new LoginPage());
+            MainPage = new NavigationPage( new LoginPage());
         }
         protected override void OnStart()
         {

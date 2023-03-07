@@ -6,16 +6,10 @@ using System.Threading.Tasks;
 
 namespace Jci.RetailSurveyTool.TechnicianApp.Models
 {
-    public class MasterFlyoutPageFlyoutMenuItem
+    public class FlyoutPageItem
     {
-        public MasterFlyoutPageFlyoutMenuItem()
-        {
-            TargetType = typeof(MasterFlyoutPageFlyoutMenuItem);
-        }
-        public int Id { get; set; }
         public string Title { get; set; }
-        public string Icon { get; set; }
-
+        public string IconSource { get; set; }
         public Type TargetType { get; set; }
     }
 }

@@ -86,8 +86,9 @@ namespace Jci.RetailSurveyTool.TechnicianApp.ViewModels.NewAudit
         {
             MessagingCenter.Send<AuditStoreAreaListViewModel>(this, MessageNames.NewIssuesListMessage);
             MessagingCenter.Send<AuditStoreAreaListViewModel, StoreArea>(this, MessageNames.SelectedStoreAreaMessage, SelectedStoreArea);
-            App.NavigationService.NavigateTo("StoreAreaDetailsPage");
+            //App.NavigationService.NavigateTo("StoreAreaDetailsPage");
             ////App.NavigationService.NavigateTo("StoreAreaDetailsPage", SelectedStoreArea);
+            App.Current.MainPage.Navigation.PushAsync(new StoreAreaDetailsPage());
         }
 
         public override async Task InitializeAsync(object parameter)
